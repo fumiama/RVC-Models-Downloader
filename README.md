@@ -3,7 +3,7 @@ Quickly download RVC models in 🤗 Hugging Face.
 
 ## Quick Start
 ### Preparation
-Put this program into the root directory of RVC.
+Put this program into the root directory of RVC. You can download it at [Release](https://github.com/RVC-Project/RVC-Models-Downloader/releases) page.
 ### Download All Assets
 ```bash
 rvcmd assets/all
