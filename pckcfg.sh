@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # Should be run by go generate. DO NOT run it directly.
 
 files=()
