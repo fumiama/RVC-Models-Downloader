@@ -19,3 +19,9 @@
 
 # Go workspace file
 go.work
+
+# Packed configs
+*.zip
+
+# MacOS system file
+.DS_Store

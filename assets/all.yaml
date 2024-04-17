@@ -1,0 +1,7 @@
+BaseURL: https://huggingface.co/lj1995/VoiceConversionWebUI/resolve/main
+Targets:
+  - Refer: hubert
+  - Refer: rmvpe
+  - Refer: v1
+  - Refer: v2
+  - Refer: uvr5

@@ -1,0 +1,8 @@
+BaseURL: https://huggingface.co/lj1995/VoiceConversionWebUI/resolve/main
+Targets:
+  - Folder: .
+    Copy:
+      - ffmpeg.exe
+      - ffprobe.exe
+    OS: windows
+    Arch: amd64

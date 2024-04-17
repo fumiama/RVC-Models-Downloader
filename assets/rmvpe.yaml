@@ -1,0 +1,6 @@
+BaseURL: https://huggingface.co/lj1995/VoiceConversionWebUI/resolve/main
+Targets:
+  - Folder: .
+    Copy:
+      - rmvpe.pt
+      - rmvpe.onnx

@@ -1,0 +1,18 @@
+BaseURL: https://huggingface.co/lj1995/VoiceConversionWebUI/resolve/main
+Targets:
+  - Refer: hubert
+  - Folder: assets/pretrained
+    Copy:
+      - pretrained/D32k.pth
+      - pretrained/D40k.pth
+      - pretrained/D48k.pth
+      - pretrained/G32k.pth
+      - pretrained/G40k.pth
+      - pretrained/G48k.pth
+      - pretrained/f0D32k.pth
+      - pretrained/f0D40k.pth
+      - pretrained/f0D48k.pth
+      - pretrained/f0G32k.pth
+      - pretrained/f0G40k.pth
+      - pretrained/f0G48k.pth
+  - Refer: uvr5

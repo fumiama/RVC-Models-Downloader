@@ -1,0 +1,7 @@
+BaseURL: https://huggingface.co/lj1995/VoiceConversionWebUI/resolve/main
+Targets:
+  - Folder: .
+    Copy:
+      - RVC1006Nvidia.7z
+    OS: windows
+    Arch: amd64

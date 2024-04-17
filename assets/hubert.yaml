@@ -1,0 +1,5 @@
+BaseURL: https://huggingface.co/lj1995/VoiceConversionWebUI/resolve/main
+Targets:
+  - Folder: assets/hubert
+    Copy:
+      - hubert_base.pt
