@@ -28,7 +28,7 @@ func main() {
 	flag.Parse()
 	args := flag.Args()
 	if len(args) != 1 {
-		fmt.Println("Usage:", os.Args[0], "[-notrs] 'target/to/download'")
+		fmt.Println("Usage:", os.Args[0], "[-notrs] [-dns dns.yaml] 'target/to/download'")
 		flag.PrintDefaults()
 		fmt.Println("  'target/to/download'\n        like packs/general/latest")
 		fmt.Println("All available targets:")
