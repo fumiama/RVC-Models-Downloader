@@ -7,6 +7,8 @@ import (
 	"runtime"
 	"time"
 
+	"github.com/fumiama/terasu/dns"
+	"github.com/fumiama/terasu/ip"
 	"github.com/sirupsen/logrus"
 	"gopkg.in/yaml.v3"
 
@@ -15,14 +17,12 @@ import (
 
 //go:generate ./pckcfg.sh assets packs tools
 
-var usetrs = true
-
 const ua = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36 Edg/123.0.0.0"
 
 func main() {
 	logrus.Infoln("RVC Models Downloader start at", time.Now().Local().Format(time.DateTime+" (MST)"))
 	logrus.Infof("operating system: %s, architecture: %s", runtime.GOOS, runtime.GOARCH)
-	logrus.Infoln("can use ipv6:", canUseIPv6.Get())
+	logrus.Infoln("can use ipv6:", ip.IsIPv6Available.Get())
 	ntrs := flag.Bool("notrs", false, "use standard TLS client")
 	dnsf := flag.String("dns", "", "custom dns.yaml")
 	cust := flag.Bool("c", false, "use custom yaml instruction")
@@ -37,9 +37,6 @@ func main() {
 		fmt.Println(cmdlst.String())
 		return
 	}
-	if *ntrs {
-		usetrs = false
-	}
 	if *dnsf != "" {
 		f, err := os.Open(*dnsf)
 		if err != nil {
@@ -53,10 +50,10 @@ func main() {
 			return
 		}
 		_ = f.Close()
-		if canUseIPv6.Get() {
-			dotv6servers.add(m)
+		if ip.IsIPv6Available.Get() {
+			dns.IPv6Servers.Add(m)
 		} else {
-			dotv4servers.add(m)
+			dns.IPv4Servers.Add(m)
 		}
 		fmt.Println("custom dns file added")
 	}
@@ -65,7 +62,7 @@ func main() {
 		logrus.Errorln(err)
 		return
 	}
-	err = usercfg.download(args[0], "", *cust, *force)
+	err = usercfg.download(args[0], "", *cust, !*ntrs, *force)
 	if err != nil {
 		logrus.Errorln(err)
 		return

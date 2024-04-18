@@ -9,11 +9,13 @@ require (
 )
 
 require (
-	github.com/FloatTech/ttl v0.0.0-20230307105452-d6f7b2b647d1
-	github.com/RomiChan/syncx v0.0.0-20221202055724-5f842c53020e
-	github.com/fumiama/terasu v0.0.0-20240416061047-62d3c9f6be80
-	golang.org/x/net v0.24.0
+	github.com/fumiama/terasu v0.0.0-20240418151245-719e0c16831b
 	golang.org/x/sys v0.19.0
 )
 
-require golang.org/x/text v0.14.0 // indirect
+require (
+	github.com/FloatTech/ttl v0.0.0-20230307105452-d6f7b2b647d1 // indirect
+	github.com/RomiChan/syncx v0.0.0-20240418144900-b7402ffdebc7 // indirect
+	golang.org/x/net v0.24.0 // indirect
+	golang.org/x/text v0.14.0 // indirect
+)
