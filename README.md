@@ -17,8 +17,8 @@ rvcmd packs/general/latest
 ```bash
 rvcmd tools/ffmpeg
 ```
-#### Customized Download
-##### Ex.1. Download ffmpeg Tools & Latest Intel Pack
+### Customized Download
+#### Ex.1. Download ffmpeg Tools & Latest Intel Pack
 1. Write and save the following `cust.yaml`.
     ```yaml
     BaseURL: https://huggingface.co/lj1995/VoiceConversionWebUI/resolve/main
@@ -30,7 +30,7 @@ rvcmd tools/ffmpeg
     ```bash
     rvcmd -c cust
     ```
-##### Ex.2. Download other Repositories
+#### Ex.2. Download other Repositories
 > Use [Stable Diffusion v1-5](https://huggingface.co/runwayml/stable-diffusion-v1-5) as the example.
 1. Write and save the following `cust.yaml`.
     ```yaml
