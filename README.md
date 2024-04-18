@@ -4,32 +4,33 @@ Quickly download RVC models in 🤗 Hugging Face.
 ## Quick Start
 ### Preparation
 Put this program into the root directory of RVC. You can download it at [Release](https://github.com/RVC-Project/RVC-Models-Downloader/releases) page.
-### Download All Assets
+### Download
+#### All Assets
 ```bash
 rvcmd assets/all
 ```
-### Download Latest General Pack (Windows Only)
+#### Latest General Pack (Windows Only)
 ```bash
 rvcmd packs/general/latest
 ```
-### Download ffmpeg Tools (Windows Only)
+#### ffmpeg Tools (Windows Only)
 ```bash
 rvcmd tools/ffmpeg
 ```
-## Customized Download
-### Download ffmpeg Tools & Latest Intel Pack
+#### Customized Download
+##### Ex.1. Download ffmpeg Tools & Latest Intel Pack
 1. Write and save the following `cust.yaml`.
     ```yaml
     BaseURL: https://huggingface.co/lj1995/VoiceConversionWebUI/resolve/main
     Targets:
-    - Refer: tools/ffmpeg
-    - Refer: packs/intel/latest
+      - Refer: tools/ffmpeg
+      - Refer: packs/intel/latest
     ```
 2. Run `rvcmd` in the same folder.
     ```bash
     rvcmd -c cust
     ```
-### Download other Repositories
+##### Ex.2. Download other Repositories
 > Use [Stable Diffusion v1-5](https://huggingface.co/runwayml/stable-diffusion-v1-5) as the example.
 1. Write and save the following `cust.yaml`.
     ```yaml
