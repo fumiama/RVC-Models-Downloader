@@ -21,10 +21,11 @@ const ua = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (
 
 func main() {
 	logrus.Infoln("RVC Models Downloader start at", time.Now().Local().Format(time.DateTime+" (MST)"))
-	logrus.Infof("operating system: %s, architecture: %s\n", runtime.GOOS, runtime.GOARCH)
+	logrus.Infof("operating system: %s, architecture: %s", runtime.GOOS, runtime.GOARCH)
 	logrus.Infoln("can use ipv6:", canUseIPv6.Get())
 	ntrs := flag.Bool("notrs", false, "use standard TLS client")
 	dnsf := flag.String("dns", "", "custom dns.yaml")
+	cust := flag.Bool("c", false, "use custom yaml instruction")
 	flag.Parse()
 	args := flag.Args()
 	if len(args) != 1 {
@@ -58,15 +59,15 @@ func main() {
 		}
 		fmt.Println("custom dns file added")
 	}
-	usercfg, err := readconfig(args[0])
+	usercfg, err := readconfig(args[0], *cust)
 	if err != nil {
 		logrus.Errorln(err)
 		return
 	}
-	err = usercfg.download(args[0])
+	err = usercfg.download(args[0], "", *cust)
 	if err != nil {
 		logrus.Errorln(err)
 		return
 	}
-	logrus.Info("download tasks finished")
+	logrus.Info("all download tasks finished.")
 }

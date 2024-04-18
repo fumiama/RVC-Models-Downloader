@@ -17,7 +17,7 @@ import (
 )
 
 var (
-	ErrEmptyHostAddress = errors.New("empty host addr")
+	errEmptyHostAddress = errors.New("empty host addr")
 )
 
 var httpdialer = net.Dialer{
@@ -57,7 +57,7 @@ var cli = http.Client{
 				lookupTable.Set(host, addrs)
 			}
 			if len(addr) == 0 {
-				return nil, ErrEmptyHostAddress
+				return nil, errEmptyHostAddress
 			}
 			var tlsConn *tls.Conn
 			for _, a := range addrs {

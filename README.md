@@ -16,10 +16,39 @@ rvcmd packs/general/latest
 ```bash
 rvcmd tools/ffmpeg
 ```
-
+## Customized Download
+### Download ffmpeg Tools & Latest Intel Pack
+1. Write and save the following `cust.yaml`.
+    ```yaml
+    BaseURL: https://huggingface.co/lj1995/VoiceConversionWebUI/resolve/main
+    Targets:
+    - Refer: tools/ffmpeg
+    - Refer: packs/intel/latest
+    ```
+2. Run `rvcmd` in the same folder.
+    ```bash
+    rvcmd -c cust
+    ```
+### Download other Repositories
+> Use [Stable Diffusion v1-5](https://huggingface.co/runwayml/stable-diffusion-v1-5) as the example.
+1. Write and save the following `cust.yaml`.
+    ```yaml
+    BaseURL: https://huggingface.co/runwayml/stable-diffusion-v1-5/resolve/main
+    Targets:
+      - Folder: sd1.5 # the folder you want to download into
+        Copy: # files to download
+          - v1-5-pruned-emaonly.ckpt
+          - v1-5-pruned-emaonly.safetensors
+          - vae/diffusion_pytorch_model.bin
+    ```
+2. Run `rvcmd` in the same folder.
+    ```bash
+    rvcmd -c cust
+    ```
 ## Full Usage
 ```bash
 Usage: rvcmd [-notrs] [-dns dns.yaml] 'target/to/download'
+  -c    use custom yaml instruction
   -dns string
         custom dns.yaml
   -notrs
