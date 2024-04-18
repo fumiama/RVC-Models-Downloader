@@ -8,7 +8,6 @@ import (
 	"errors"
 	"net"
 	"net/http"
-	"strings"
 	"time"
 
 	"github.com/FloatTech/ttl"
@@ -61,12 +60,7 @@ var cli = http.Client{
 			}
 			var tlsConn *tls.Conn
 			for _, a := range addrs {
-				if strings.Contains(a, ":") {
-					a = "[" + a + "]:" + port
-				} else {
-					a += ":" + port
-				}
-				conn, err := httpdialer.DialContext(ctx, network, a)
+				conn, err := httpdialer.DialContext(ctx, network, net.JoinHostPort(a, port))
 				if err != nil {
 					continue
 				}
