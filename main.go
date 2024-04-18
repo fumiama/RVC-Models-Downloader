@@ -26,6 +26,7 @@ func main() {
 	ntrs := flag.Bool("notrs", false, "use standard TLS client")
 	dnsf := flag.String("dns", "", "custom dns.yaml")
 	cust := flag.Bool("c", false, "use custom yaml instruction")
+	force := flag.Bool("f", false, "force download even file exists")
 	flag.Parse()
 	args := flag.Args()
 	if len(args) != 1 {
@@ -64,7 +65,7 @@ func main() {
 		logrus.Errorln(err)
 		return
 	}
-	err = usercfg.download(args[0], "", *cust)
+	err = usercfg.download(args[0], "", *cust, *force)
 	if err != nil {
 		logrus.Errorln(err)
 		return

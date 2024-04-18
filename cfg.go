@@ -65,7 +65,7 @@ type targets struct {
 	Arch   string   `yaml:"Arch"`
 }
 
-func (c *config) download(path, prefix string, usecust bool) error {
+func (c *config) download(path, prefix string, usecust, force bool) error {
 	for i, t := range c.Targets {
 		if t.Refer != "" {
 			refp := path[:strings.LastIndex(path, "/")+1] + t.Refer
@@ -74,7 +74,7 @@ func (c *config) download(path, prefix string, usecust bool) error {
 			if err != nil {
 				return err
 			}
-			err = refcfg.download(refp, prefix+strconv.Itoa(i+1)+".", usecust)
+			err = refcfg.download(refp, prefix+strconv.Itoa(i+1)+".", usecust, force)
 			if err != nil {
 				return err
 			}
@@ -116,6 +116,13 @@ func (c *config) download(path, prefix string, usecust bool) error {
 				if sleep > time.Millisecond {
 					time.Sleep(sleep)
 				}
+				fname := t.Folder + "/" + cp
+				if !force {
+					if _, err := os.Stat(fname); err == nil || os.IsExist(err) {
+						logrus.Warnf("#%s%d skip exist file %s", prefix, i+1, fname)
+						return
+					}
+				}
 				req, err := http.NewRequest("GET", c.BaseURL+"/"+cp, nil)
 				if err != nil {
 					logrus.Errorf("#%s%d new request to %s err: %v", prefix, i+1, cp, err)
@@ -134,14 +141,13 @@ func (c *config) download(path, prefix string, usecust bool) error {
 					logrus.Errorf("#%s%d get %s err: %v", prefix, i+1, req.URL, err)
 					return
 				}
-				fname := t.Folder + "/" + cp
 				f, err := os.Create(fname)
 				if err != nil {
 					logrus.Errorf("#%s%d create file %s err: %v", prefix, i+1, fname, err)
 					return
 				}
-				logrus.Infof("#%s%d writing file %s", prefix, i+1, fname)
 				defer f.Close()
+				logrus.Infof("#%s%d writing file %s", prefix, i+1, fname)
 				pm := newmeter(fmt.Sprintf("#%s%d", prefix, i+1), fname, int(resp.ContentLength))
 				_, err = io.Copy(io.MultiWriter(f, &pm), resp.Body)
 				if err != nil {

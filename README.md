@@ -52,6 +52,7 @@ Usage: rvcmd [-notrs] [-dns dns.yaml] 'target/to/download'
   -c    use custom yaml instruction
   -dns string
         custom dns.yaml
+  -f    force download even file exists
   -notrs
         use standard TLS client
   'target/to/download'
