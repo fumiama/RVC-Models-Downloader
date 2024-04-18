@@ -40,6 +40,7 @@ rvcmd tools/ffmpeg
         Copy: # files to download
           - v1-5-pruned-emaonly.ckpt
           - v1-5-pruned-emaonly.safetensors
+      - Folder: sd1.5/vae # the folder you want to download into
           - vae/diffusion_pytorch_model.bin
     ```
 2. Run `rvcmd` in the same folder.

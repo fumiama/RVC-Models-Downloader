@@ -27,6 +27,7 @@ func main() {
 	dnsf := flag.String("dns", "", "custom dns.yaml")
 	cust := flag.Bool("c", false, "use custom yaml instruction")
 	force := flag.Bool("f", false, "force download even file exists")
+	wait := flag.Uint("w", 4, "connection waiting seconds")
 	flag.Parse()
 	args := flag.Args()
 	if len(args) != 1 {
@@ -62,7 +63,7 @@ func main() {
 		logrus.Errorln(err)
 		return
 	}
-	err = usercfg.download(args[0], "", *cust, !*ntrs, *force)
+	err = usercfg.download(args[0], "", time.Second*time.Duration(*wait), *cust, !*ntrs, *force)
 	if err != nil {
 		logrus.Errorln(err)
 		return

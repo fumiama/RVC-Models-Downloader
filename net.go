@@ -16,7 +16,7 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-func (c *config) download(path, prefix string, usecust, usetrs, force bool) error {
+func (c *config) download(path, prefix string, waits time.Duration, usecust, usetrs, force bool) error {
 	for i, t := range c.Targets {
 		if t.Refer != "" {
 			refp := path[:strings.LastIndex(path, "/")+1] + t.Refer
@@ -25,7 +25,7 @@ func (c *config) download(path, prefix string, usecust, usetrs, force bool) erro
 			if err != nil {
 				return err
 			}
-			err = refcfg.download(refp, prefix+strconv.Itoa(i+1)+".", usecust, usetrs, force)
+			err = refcfg.download(refp, prefix+strconv.Itoa(i+1)+".", waits, usecust, usetrs, force)
 			if err != nil {
 				return err
 			}
@@ -54,20 +54,11 @@ func (c *config) download(path, prefix string, usecust, usetrs, force bool) erro
 		for j, cp := range t.Copy {
 			go func(i int, cp, prefix string) {
 				defer wg.Done()
-				if strings.Contains(cp, "/") { // have innner folder
-					infldr := t.Folder + "/" + cp[:strings.LastIndex(cp, "/")]
-					err := os.MkdirAll(infldr, 0755)
-					if err != nil {
-						logrus.Errorf("#%s%d make target inner folder '%s' err: %v", prefix, i+1, t.Folder, err)
-						return
-					}
-					logrus.Infof("#%s%d make target inner folder '%s'.", prefix, i+1, t.Folder)
-				}
-				sleep := time.Millisecond * 100 * time.Duration(i)
+				sleep := waits * time.Duration(i)
 				if sleep > time.Millisecond {
 					time.Sleep(sleep)
 				}
-				fname := t.Folder + "/" + cp
+				fname := t.Folder + "/" + cp[strings.LastIndex(cp, "/")+1:]
 				if !force {
 					if _, err := os.Stat(fname); err == nil || os.IsExist(err) {
 						logrus.Warnf("#%s%d skip exist file %s", prefix, i+1, fname)

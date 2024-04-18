@@ -5,8 +5,8 @@ github.com/RomiChan/syncx v0.0.0-20240418144900-b7402ffdebc7/go.mod h1:vD7Ra3Q9o
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
-github.com/fumiama/terasu v0.0.0-20240418151245-719e0c16831b h1:j6DMJg+jd4HPmhQtVwtiHBM1y9XskJgWhskUvWuhFuY=
-github.com/fumiama/terasu v0.0.0-20240418151245-719e0c16831b/go.mod h1:afchyfKAb7J/zvaENtYzjIEPVbwiEjJaow05zzT4usM=
+github.com/fumiama/terasu v0.0.0-20240418161858-1c3273a78268 h1:6R8kSGVSIoR3xm2NG8Z4ivkTpAET783RFsJOVKrI7n8=
+github.com/fumiama/terasu v0.0.0-20240418161858-1c3273a78268/go.mod h1:afchyfKAb7J/zvaENtYzjIEPVbwiEjJaow05zzT4usM=
 github.com/pkg/errors v0.9.1 h1:FEBLx1zS214owpjy7qsBeixbURkuhQAwrK5UwLGTwt4=
 github.com/pkg/errors v0.9.1/go.mod h1:bwawxfHBFNV+L2hUp1rHADufV3IMtnDRdf1r5NINEl0=
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=
