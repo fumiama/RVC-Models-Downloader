@@ -1,5 +1,5 @@
 # RVC模型下载器
-[English](README.md)|简体中文
+[English](README.md) | 简体中文
 
 一个能够批量下载`yaml`清单列出的文件的简单工具（例如 Hugging Face 🤗 中的 RVC 模型）。
 

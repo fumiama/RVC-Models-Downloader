@@ -1,5 +1,5 @@
 # RVC-Models-Downloader
-English|[简体中文](README_sc.md)
+English | [简体中文](README_sc.md)
 
 Easy tool to download a batch of files listed in yaml (ex. RVC models in Hugging Face 🤗).
 
