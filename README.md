@@ -13,7 +13,7 @@ Easy tool to download a batch of files listed in yaml (ex. RVC models in Hugging
 ```bash
 rvcmd assets/all
 ```
-#### Latest General Pack (Windows Only)
+#### Latest General Pack of RVC (Windows Only)
 ```bash
 rvcmd packs/general/latest
 ```
