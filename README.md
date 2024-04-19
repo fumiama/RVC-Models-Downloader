@@ -6,7 +6,7 @@ Easy tool to download a batch of files listed in yaml (ex. RVC models in Hugging
 ## Quick Start
 ### Preparation
 1. Download the program at [Release](https://github.com/RVC-Project/RVC-Models-Downloader/releases) page.
-2. Put this program into the root directory of RVC (or whatever position you want to download).
+2. Put this program into the root directory of RVC (or whatever position you want to download some files into).
 3. You can also add it to the `PATH` to use this tool everywhere. If you have installed this program by a package manager, it may be already in the `PATH`.
 ### Download
 #### All Assets of RVC
