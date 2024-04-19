@@ -30,7 +30,7 @@ rvcmd tools/ffmpeg
     ```bash
     rvcmd -c cust
     ```
-#### Ex.2. Download other Repositories
+#### Ex.2. Download other Repositories in 🤗
 > Use [Stable Diffusion v1-5](https://huggingface.co/runwayml/stable-diffusion-v1-5) as the example.
 1. Write and save the following `cust.yaml`.
     ```yaml
@@ -41,7 +41,18 @@ rvcmd tools/ffmpeg
           - v1-5-pruned-emaonly.ckpt
           - v1-5-pruned-emaonly.safetensors
       - Folder: sd1.5/vae # the folder you want to download into
+        Copy: # files to download
           - vae/diffusion_pytorch_model.bin
+    ```
+#### Ex.3. Download Releases in GitHub
+> Use [yousa-ling-diffsinger-v1.3](https://github.com/yousa-ling-official-production/yousa-ling-diffsinger-v1/releases/tag/v1.3) as the example.
+1. Write and save the following `cust.yaml`.
+    ```yaml
+    BaseURL: https://github.com/yousa-ling-official-production/yousa-ling-diffsinger-v1/releases/download/v1.3
+    Targets:
+      - Folder: . # the folder you want to download into
+        Copy: # files to download
+          - yousaV1.3.zip
     ```
 2. Run `rvcmd` in the same folder.
     ```bash
