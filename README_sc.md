@@ -1,42 +1,42 @@
-# RVC-Models-Downloader
-English|[简体中文](README_sc.md)
+# RVC模型下载器
+[English](README.md)|简体中文
 
-Easy tool to download a batch of files listed in yaml (ex. RVC models in Hugging Face 🤗).
+一个能够批量下载`yaml`清单列出的文件的简单工具（例如 Hugging Face 🤗 中的 RVC 模型）。
 
-## Quick Start
-### Preparation
-1. Download the program at [Release](https://github.com/RVC-Project/RVC-Models-Downloader/releases) page.
-2. Put this program into the root directory of RVC (or whatever position you want to download).
-3. You can also add it to the `PATH` to use this tool everywhere. If you have installed this program by a package manager, it may be already in the `PATH`.
-### Download
-#### All Assets of RVC
+## 快速开始
+### 准备工作
+1. 在[发布](https://github.com/RVC-Project/RVC-Models-Downloader/releases)页面下载程序。
+2. 将此程序放入RVC的根目录（或您想要下载的任何位置）。
+3. 您也可以将它添加到`PATH`中以便在任何地方使用此工具。如果您已经通过包管理器安装了此程序，那么它可能已经位于`PATH`。
+### 下载
+#### RVC的所有资源文件
 ```bash
 rvcmd assets/all
 ```
-#### Latest General Pack (Windows Only)
+#### RVC的最新通用整合包（仅限Windows）
 ```bash
 rvcmd packs/general/latest
 ```
-#### ffmpeg Tools (Windows Only)
+#### ffmpeg工具（仅限Windows）
 ```bash
 rvcmd tools/ffmpeg
 ```
-### Customized Download
-#### Ex.1. Download ffmpeg Tools & Latest Intel Pack
-1. Write and save the following `cust.yaml`.
+### 自定义下载
+#### 示例1. 下载ffmpeg工具和最新的Intel包
+1. 编写并保存以下`cust.yaml`。
     ```yaml
     BaseURL: https://huggingface.co/lj1995/VoiceConversionWebUI/resolve/main
     Targets:
       - Refer: tools/ffmpeg
       - Refer: packs/intel/latest
     ```
-2. Run `rvcmd` in the same folder.
+2. 在同一文件夹中运行`rvcmd`。
     ```bash
     rvcmd -c cust
     ```
-#### Ex.2. Download other Repositories in 🤗
-> Use [Stable Diffusion v1-5](https://huggingface.co/runwayml/stable-diffusion-v1-5) as the example.
-1. Write and save the following `cust.yaml`.
+#### 示例2. 下载🤗中的其他仓库
+> 以 [Stable Diffusion v1-5](https://huggingface.co/runwayml/stable-diffusion-v1-5) 为例。
+1. 编写并保存以下`cust.yaml`。
     ```yaml
     BaseURL: https://huggingface.co/runwayml/stable-diffusion-v1-5/resolve/main
     Targets:
@@ -48,9 +48,9 @@ rvcmd tools/ffmpeg
         Copy: # files to download
           - vae/diffusion_pytorch_model.bin
     ```
-#### Ex.3. Download Releases in GitHub
-> Use [yousa-ling-diffsinger-v1.3](https://github.com/yousa-ling-official-production/yousa-ling-diffsinger-v1/releases/tag/v1.3) as the example.
-1. Write and save the following `cust.yaml`.
+#### 示例3. 下载GitHub中的发布版本
+> 以 [yousa-ling-diffsinger-v1.3](https://github.com/yousa-ling-official-production/yousa-ling-diffsinger-v1/releases/tag/v1.3) 为例。
+1. 编写并保存以下`cust.yaml`。
     ```yaml
     BaseURL: https://github.com/yousa-ling-official-production/yousa-ling-diffsinger-v1/releases/download/v1.3
     Targets:
@@ -58,11 +58,11 @@ rvcmd tools/ffmpeg
         Copy: # files to download
           - yousaV1.3.zip
     ```
-2. Run `rvcmd` in the same folder.
+2. 在同一文件夹中运行`rvcmd`。
     ```bash
     rvcmd -c cust
     ```
-## Full Usage
+## 完整用法
 ```bash
 Usage: rvcmd [-notrs] [-dns dns.yaml] 'target/to/download'
   -c    use custom yaml instruction
