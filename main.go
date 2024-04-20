@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"os"
 	"runtime"
+	"sync"
 	"time"
 
 	"github.com/fumiama/terasu/dns"
@@ -57,7 +58,10 @@ func main() {
 	}
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
+	wg := sync.WaitGroup{}
+	wg.Add(1)
 	go func() {
+		defer wg.Done()
 		if *dnsf != "" {
 			f, err := os.Open(*dnsf)
 			if err != nil {
@@ -99,5 +103,9 @@ func main() {
 			logrus.Warnln("download canceled")
 		}
 	}()
-	sc.show(time.Second)
+	if notui {
+		wg.Wait()
+	} else {
+		sc.show(time.Second)
+	}
 }
