@@ -47,7 +47,7 @@ func newscreen() (s screen) {
 	s.logroll.SetRect(w/2, 0, w, h/2)
 
 	s.speedln = widgets.NewPlot()
-	s.speedln.Title = "Speed"
+	s.speedln.Title = "Speed (MB/s)"
 	s.speedln.Data = make([][]float64, 1)
 	s.speedln.Data[0] = []float64{0, 0}
 	s.speedln.AxesColor = ui.ColorWhite
@@ -60,18 +60,22 @@ func newscreen() (s screen) {
 func (s *screen) logwrite(sz int) {
 	s.Lock()
 	defer s.Unlock()
+	w := s.speedln.Size().X
 	s.totaldl += sz
 	tdiff := time.Since(s.lastclr)
 	if tdiff > time.Second {
 		s.speedln.Data[0] = append(s.speedln.Data[0],
-			float64(s.totaldl/1024)/(float64(tdiff)/float64(time.Second)),
+			float64(s.totaldl/1024)/1024/(float64(tdiff)/float64(time.Second)),
 		)
+		if len(s.speedln.Data[0]) > w-5 {
+			s.speedln.Data[0] = s.speedln.Data[0][1:]
+		}
 		s.totaldl = 0
 		s.lastclr = time.Now()
 	}
 }
 
-func (s *screen) flushloop(interval time.Duration) {
+func (s *screen) show(interval time.Duration) {
 	t := time.NewTicker(interval)
 	defer t.Stop()
 	s.flush()

@@ -73,6 +73,8 @@ Usage: rvcmd [-notrs] [-dns dns.yaml] 'target/to/download'
   -f    force download even file exists
   -notrs
         use standard TLS client
+  -notui
+        use plain text instead of TUI
   -w uint
         connection waiting seconds (default 4)
   'target/to/download'

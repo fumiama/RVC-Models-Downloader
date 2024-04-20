@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"flag"
 	"fmt"
 	"os"
@@ -54,6 +55,8 @@ func main() {
 		defer ui.Close()
 		sc = newscreen()
 	}
+	ctx, cancel := context.WithCancel(context.Background())
+	defer cancel()
 	go func() {
 		if *dnsf != "" {
 			f, err := os.Open(*dnsf)
@@ -80,12 +83,21 @@ func main() {
 			errorln(err)
 			return
 		}
-		err = usercfg.download(args[0], "", time.Second*time.Duration(*wait), *cust, !*ntrs, *force)
-		if err != nil {
-			errorln(err)
-			return
+		ch := make(chan struct{})
+		go func() {
+			err := usercfg.download(args[0], "", time.Second*time.Duration(*wait), *cust, !*ntrs, *force)
+			ch <- struct{}{}
+			if err != nil {
+				errorln(err)
+				return
+			}
+		}()
+		select {
+		case <-ch:
+			infoln("all download tasks finished.")
+		case <-ctx.Done():
+			logrus.Warnln("download canceled")
 		}
-		infoln("all download tasks finished.")
 	}()
-	sc.flushloop(time.Second)
+	sc.show(time.Second)
 }
