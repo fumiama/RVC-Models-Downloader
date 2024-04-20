@@ -68,7 +68,7 @@ func main() {
 				errorln("open custom dns file", *dnsf, "err:", err)
 				return
 			}
-			m := map[string][]string{}
+			m := dns.DNSConfig{}
 			err = yaml.NewDecoder(f).Decode(&m)
 			if err != nil {
 				errorln("decode custom dns file", *dnsf, "err:", err)
@@ -76,9 +76,9 @@ func main() {
 			}
 			_ = f.Close()
 			if ip.IsIPv6Available.Get() {
-				dns.IPv6Servers.Add(m)
+				dns.IPv6Servers.Add(&m)
 			} else {
-				dns.IPv4Servers.Add(m)
+				dns.IPv4Servers.Add(&m)
 			}
 			infoln("custom dns file added")
 		}
