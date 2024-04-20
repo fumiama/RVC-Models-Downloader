@@ -3,6 +3,8 @@
 
 一个能够批量下载`yaml`清单内文件的简单工具（例如 Hugging Face 🤗 中的 RVC 模型）。
 
+![tui demo](https://github.com/RVC-Project/RVC-Models-Downloader/assets/41315874/faec35ea-b7af-4404-83f3-ecca73da9abc)
+
 ## 快速开始
 ### 准备工作
 1. 在[发布](https://github.com/RVC-Project/RVC-Models-Downloader/releases)页面下载程序。
