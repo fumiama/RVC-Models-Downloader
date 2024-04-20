@@ -3,7 +3,7 @@ English | [简体中文](README_sc.md)
 
 Easy tool to download a batch of files listed in yaml (ex. RVC models in Hugging Face 🤗).
 
-![tui demo](https://github.com/RVC-Project/RVC-Models-Downloader/assets/41315874/faec35ea-b7af-4404-83f3-ecca73da9abc)
+![tui demo](https://github.com/RVC-Project/RVC-Models-Downloader/assets/41315874/db577dfb-8a6d-4909-b071-9d36cc77afc6)
 
 ## Quick Start
 ### Preparation
