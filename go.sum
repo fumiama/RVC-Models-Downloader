@@ -5,8 +5,8 @@ github.com/RomiChan/syncx v0.0.0-20240418144900-b7402ffdebc7/go.mod h1:vD7Ra3Q9o
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
-github.com/fumiama/terasu v0.0.0-20240420161109-c8c0088d72cd h1:cEUaAUdb1uVyOfEenCMtU3lUMELTVwepn/g7UL/CK54=
-github.com/fumiama/terasu v0.0.0-20240420161109-c8c0088d72cd/go.mod h1:afchyfKAb7J/zvaENtYzjIEPVbwiEjJaow05zzT4usM=
+github.com/fumiama/terasu v0.0.0-20240502091919-c887e26289a8 h1:mVOgOhlrF0ra8/BkwVA71ev/1HkzAgDn8gWU2UNbDU8=
+github.com/fumiama/terasu v0.0.0-20240502091919-c887e26289a8/go.mod h1:UVx8YP1jKKL1Cj+uy+OnQRM2Ih6U36Mqy9GSf7jabsI=
 github.com/gizak/termui/v3 v3.1.0 h1:ZZmVDgwHl7gR7elfKf1xc4IudXZ5qqfDh4wExk4Iajc=
 github.com/gizak/termui/v3 v3.1.0/go.mod h1:bXQEBkJpzxUAKf0+xq9MSWAvWZlE7c+aidmyFlkYTrY=
 github.com/mattn/go-runewidth v0.0.2 h1:UnlwIPBGaTZfPQ6T1IGzPI0EkYAQmT9fAEJ/poFC63o=
