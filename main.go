@@ -20,8 +20,6 @@ import (
 
 //go:generate ./pckcfg.sh assets packs tools
 
-const ua = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36 Edg/123.0.0.0"
-
 var (
 	notui = false
 	sc    screen
@@ -33,6 +31,7 @@ func main() {
 	cust := flag.Bool("c", false, "use custom yaml instruction")
 	force := flag.Bool("f", false, "force download even file exists")
 	wait := flag.Uint("w", 4, "connection waiting seconds")
+	ua := flag.String("ua", defua, "customize user agent")
 	flag.BoolVar(&notui, "notui", false, "use plain text instead of TUI")
 	flag.Parse()
 	args := flag.Args()
@@ -89,7 +88,7 @@ func main() {
 		}
 		ch := make(chan struct{})
 		go func() {
-			err := usercfg.download(args[0], "", time.Second*time.Duration(*wait), *cust, !*ntrs, *force)
+			err := usercfg.download(args[0], "", *ua, time.Second*time.Duration(*wait), *cust, !*ntrs, *force)
 			ch <- struct{}{}
 			if err != nil {
 				errorln(err)

@@ -96,6 +96,8 @@ Usage: rvcmd [-notrs] [-dns dns.yaml] 'target/to/download'
         use standard TLS client
   -notui
         use plain text instead of TUI
+  -ua string
+      customize user agent
   -w uint
         connection waiting seconds (default 4)
   'target/to/download'

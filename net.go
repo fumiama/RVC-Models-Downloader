@@ -15,7 +15,7 @@ import (
 	"github.com/pkg/errors"
 )
 
-func (c *config) download(path, prefix string, waits time.Duration, usecust, usetrs, force bool) error {
+func (c *config) download(path, prefix, ua string, waits time.Duration, usecust, usetrs, force bool) error {
 	for i, t := range c.Targets {
 		if t.Refer != "" {
 			refp := path[:strings.LastIndex(path, "/")+1] + t.Refer
@@ -24,7 +24,7 @@ func (c *config) download(path, prefix string, waits time.Duration, usecust, use
 			if err != nil {
 				return err
 			}
-			err = refcfg.download(refp, prefix+strconv.Itoa(i+1)+".", waits, usecust, usetrs, force)
+			err = refcfg.download(refp, prefix+strconv.Itoa(i+1)+".", ua, waits, usecust, usetrs, force)
 			if err != nil {
 				return err
 			}
@@ -70,7 +70,9 @@ func (c *config) download(path, prefix string, waits time.Duration, usecust, use
 					return
 				}
 				infof("#%s%d get: %s", prefix, i+1, req.URL)
-				req.Header.Add("user-agent", ua)
+				if len(ua) > 0 {
+					req.Header.Add("user-agent", ua)
+				}
 				var resp *http.Response
 				if usetrs {
 					resp, err = http2.DefaultClient.Do(req)
