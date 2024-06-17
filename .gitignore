@@ -25,3 +25,6 @@ go.work
 
 # MacOS system file
 .DS_Store
+
+# build result
+/build

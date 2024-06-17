@@ -1,4 +1,4 @@
-BaseURL: https://huggingface.co/lj1995/VoiceConversionWebUI/resolve/main
+BaseURL: https://huggingface.co/fumiama/RVC-Pretrained-Models/resolve/main
 Targets:
   - Refer: hubert
   - Folder: assets/pretrained_v2

@@ -18,7 +18,7 @@ import (
 	_ "rvcmd/console"
 )
 
-//go:generate ./pckcfg.sh assets packs tools
+//go:generate ./pckcfg.sh assets
 
 var (
 	notui = false
@@ -32,10 +32,11 @@ func main() {
 	force := flag.Bool("f", false, "force download even file exists")
 	wait := flag.Uint("w", 4, "connection waiting seconds")
 	ua := flag.String("ua", defua, "customize user agent")
+	h := flag.Bool("h", false, "display this help")
 	flag.BoolVar(&notui, "notui", false, "use plain text instead of TUI")
 	flag.Parse()
 	args := flag.Args()
-	if len(args) != 1 {
+	if len(args) != 1 || *h {
 		fmt.Println("Usage:", os.Args[0], "[-notrs] [-dns dns.yaml] 'target/to/download'")
 		flag.PrintDefaults()
 		fmt.Println("  'target/to/download'\n        like packs/general/latest")

@@ -81,7 +81,7 @@ archives:
 
 nfpms:
   - license: AGPL 3.0
-    homepage: https://github.com/RVC-Project/RVC-Models-Downloader
+    homepage: https://github.com/fumiama/RVC-Models-Downloader
     file_name_template: "rvcmd_{{ .Os }}_{{ .Arch }}{{ if .Arm }}v{{ .Arm }}{{ end }}"
     formats:
       - deb
