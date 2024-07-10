@@ -3,7 +3,7 @@ module rvcmd
 go 1.22.1
 
 require (
-	github.com/fumiama/terasu v0.0.0-20240502091919-c887e26289a8
+	github.com/fumiama/terasu v0.0.0-20240710095334-67a8daa3a979
 	github.com/gizak/termui/v3 v3.1.0
 	github.com/pkg/errors v0.9.1
 	github.com/sirupsen/logrus v1.9.3

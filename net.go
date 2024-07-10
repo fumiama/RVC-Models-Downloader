@@ -11,7 +11,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/fumiama/terasu/http2"
+	trshttp "github.com/fumiama/terasu/http"
 	"github.com/pkg/errors"
 )
 
@@ -75,7 +75,7 @@ func (c *config) download(path, prefix, ua string, waits time.Duration, usecust,
 				}
 				var resp *http.Response
 				if usetrs {
-					resp, err = http2.DefaultClient.Do(req)
+					resp, err = trshttp.DefaultClient.Do(req)
 				} else {
 					resp, err = http.DefaultClient.Do(req)
 				}
