@@ -7,5 +7,8 @@ Targets:
       - asset/Decoder.pt
       - asset/GPT.pt
       - asset/Vocos.pt
-      - asset/spk_stat.pt
-      - asset/tokenizer.pt
+  - Folder: asset/tokenizer
+    Copy:
+      - asset/tokenizer/special_tokens_map.json
+      - asset/tokenizer/tokenizer_config.json
+      - asset/tokenizer/tokenizer.json
