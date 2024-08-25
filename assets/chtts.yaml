@@ -2,11 +2,14 @@ BaseURL: https://huggingface.co/2Noise/ChatTTS/resolve/main
 Targets:
   - Folder: asset
     Copy:
-      - asset/DVAE.pt
-      - asset/DVAE_full.pt
       - asset/Decoder.pt
-      - asset/GPT.pt
+      - asset/DVAE_full.pt
+      - asset/Embed.safetensors
       - asset/Vocos.pt
+  - Folder: asset/gpt
+    Copy:
+      - asset/gpt/config.json
+      - asset/gpt/model.safetensors
   - Folder: asset/tokenizer
     Copy:
       - asset/tokenizer/special_tokens_map.json
