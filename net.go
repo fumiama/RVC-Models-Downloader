@@ -5,6 +5,7 @@ import (
 	"io"
 	"net/http"
 	"os"
+	"path"
 	"runtime"
 	"strconv"
 	"strings"
@@ -15,16 +16,16 @@ import (
 	"github.com/pkg/errors"
 )
 
-func (c *config) download(path, prefix, ua string, waits time.Duration, usecust, usetrs, force bool) error {
+func (c *config) download(p, prefix, home, ua string, waits time.Duration, usecust, usetrs, force bool) error {
 	for i, t := range c.Targets {
 		if t.Refer != "" {
-			refp := path[:strings.LastIndex(path, "/")+1] + t.Refer
+			refp := p[:strings.LastIndex(p, "/")+1] + t.Refer
 			infof("#%s%d refer to target '%s'.", prefix, i+1, refp)
 			refcfg, err := readconfig(refp, usecust)
 			if err != nil {
 				return err
 			}
-			err = refcfg.download(refp, prefix+strconv.Itoa(i+1)+".", ua, waits, usecust, usetrs, force)
+			err = refcfg.download(refp, prefix+strconv.Itoa(i+1)+".", home, ua, waits, usecust, usetrs, force)
 			if err != nil {
 				return err
 			}
@@ -38,11 +39,12 @@ func (c *config) download(path, prefix, ua string, waits time.Duration, usecust,
 			warnf("#%s%d target required Arch: %s but you are %s, skip.", prefix, i+1, t.Arch, runtime.GOARCH)
 			continue
 		}
-		err := os.MkdirAll(t.Folder, 0755)
+		homefolder := path.Join(home, t.Folder)
+		err := os.MkdirAll(homefolder, 0755)
 		if err != nil {
-			return errors.Wrap(err, fmt.Sprintf("#%s%d make target folder '%s'", prefix, i+1, t.Folder))
+			return errors.Wrap(err, fmt.Sprintf("#%s%d make target folder '%s'", prefix, i+1, homefolder))
 		}
-		infof("#%s%d open target folder '%s'.", prefix, i+1, t.Folder)
+		infof("#%s%d open target folder '%s'.", prefix, i+1, homefolder)
 		if len(t.Copy) == 0 {
 			warnf("#%s%d empty copy target.", prefix, i+1)
 			continue
@@ -57,7 +59,7 @@ func (c *config) download(path, prefix, ua string, waits time.Duration, usecust,
 				if sleep > time.Millisecond {
 					time.Sleep(sleep)
 				}
-				fname := t.Folder + "/" + cp[strings.LastIndex(cp, "/")+1:]
+				fname := path.Join(homefolder, cp[strings.LastIndex(cp, "/")+1:])
 				if !force {
 					if _, err := os.Stat(fname); err == nil || os.IsExist(err) {
 						warnf("#%s%d skip exist file %s", prefix, i+1, fname)

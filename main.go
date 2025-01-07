@@ -33,6 +33,7 @@ func main() {
 	wait := flag.Uint("w", 4, "connection waiting seconds")
 	ua := flag.String("ua", defua, "customize user agent")
 	h := flag.Bool("h", false, "display this help")
+	home := flag.String("H", ".", "download under this path")
 	flag.BoolVar(&notui, "notui", false, "use plain text instead of TUI")
 	flag.Parse()
 	args := flag.Args()
@@ -42,6 +43,11 @@ func main() {
 		fmt.Println("  'target/to/download'\n        like packs/general/latest")
 		fmt.Println("All available targets:")
 		fmt.Println(cmdlst.String())
+		return
+	}
+	err := os.MkdirAll(*home, 0755)
+	if err != nil {
+		logrus.Errorln("mkdirs of path", *home, "err:", err)
 		return
 	}
 	if notui {
@@ -89,7 +95,7 @@ func main() {
 		}
 		ch := make(chan struct{})
 		go func() {
-			err := usercfg.download(args[0], "", *ua, time.Second*time.Duration(*wait), *cust, !*ntrs, *force)
+			err := usercfg.download(args[0], "", *home, *ua, time.Second*time.Duration(*wait), *cust, !*ntrs, *force)
 			ch <- struct{}{}
 			if err != nil {
 				errorln(err)
