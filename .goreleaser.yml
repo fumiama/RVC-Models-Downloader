@@ -70,14 +70,14 @@ changelog:
 
 archives:
   - id: all
-    builds:
+    ids:
       - linux
       - macos
       - windows
     name_template: "rvcmd_{{ .Os }}_{{ .Arch }}{{ if .Arm }}v{{ .Arm }}{{ end }}"
     format_overrides:
       - goos: windows
-        format: zip
+        formats: [ 'zip' ]
 
 nfpms:
   - license: AGPL 3.0
