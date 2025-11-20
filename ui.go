@@ -35,7 +35,7 @@ func newscreen() (s screen) {
 		"[Time](mod:bold): %s\n[OS](mod:bold): %s, [Architecture](mod:bold): %s\n[Is IPv6 available](mod:bold): %v",
 		time.Now().Local().Format(time.DateTime+" (MST)"),
 		runtime.GOOS, runtime.GOARCH,
-		ip.IsIPv6Available.Get(),
+		ip.IsIPv6Available,
 	)
 	s.sysinfo.SetRect(0, s.currh, w/2, s.currh+5)
 	s.currh += 5

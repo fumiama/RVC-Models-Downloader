@@ -16,6 +16,12 @@ import (
 	"github.com/pkg/errors"
 )
 
+var pcli = &http.Client{
+	Transport: &http.Transport{
+		Proxy: http.ProxyFromEnvironment,
+	},
+}
+
 func (c *config) download(p, prefix, home, ua string, waits time.Duration, usecust, usetrs, force bool) error {
 	for i, t := range c.Targets {
 		if t.Refer != "" {
@@ -79,7 +85,7 @@ func (c *config) download(p, prefix, home, ua string, waits time.Duration, usecu
 				if usetrs {
 					resp, err = trshttp.DefaultClient.Do(req)
 				} else {
-					resp, err = http.DefaultClient.Do(req)
+					resp, err = pcli.Do(req)
 				}
 				if err != nil {
 					errorf("#%s%d get %s err: %v", prefix, i+1, req.URL, err)

@@ -35,6 +35,7 @@ func main() {
 	h := flag.Bool("h", false, "display this help")
 	home := flag.String("H", ".", "download under this path")
 	flag.BoolVar(&notui, "notui", false, "use plain text instead of TUI")
+	flag.BoolVar(&ip.IsIPv6Available, "6", false, "use ipv6")
 	flag.Parse()
 	args := flag.Args()
 	if len(args) != 1 || *h {
@@ -53,7 +54,7 @@ func main() {
 	if notui {
 		logrus.Infoln("RVC Models Downloader start at", time.Now().Local().Format(time.DateTime+" (MST)"))
 		logrus.Infof("operating system: %s, architecture: %s", runtime.GOOS, runtime.GOARCH)
-		logrus.Infoln("is ipv6 available:", ip.IsIPv6Available.Get())
+		logrus.Infoln("is ipv6 available:", ip.IsIPv6Available)
 	} else {
 		if err := ui.Init(); err != nil {
 			logrus.Errorln("failed to initialize termui:", err)
@@ -74,14 +75,14 @@ func main() {
 				errorln("open custom dns file", *dnsf, "err:", err)
 				return
 			}
-			m := dns.DNSConfig{}
+			m := dns.Config{}
 			err = yaml.NewDecoder(f).Decode(&m)
 			if err != nil {
 				errorln("decode custom dns file", *dnsf, "err:", err)
 				return
 			}
 			_ = f.Close()
-			if ip.IsIPv6Available.Get() {
+			if ip.IsIPv6Available {
 				dns.IPv6Servers.Add(&m)
 			} else {
 				dns.IPv4Servers.Add(&m)
